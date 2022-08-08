@@ -184,6 +184,12 @@ public class Topic implements Serializable{
 
 
 
+	public List<Reply> getReplies() {
+		return replies;
+	}
+
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
