@@ -43,7 +43,7 @@ public class Reply implements Serializable{
 	private Set<User> likes = new HashSet<>();
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "author_id")
 	private User author;
 
 	public Reply() {

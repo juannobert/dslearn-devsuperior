@@ -30,7 +30,7 @@ public class Deliver implements Serializable{
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
 	
-	private DeliverStatus deliverStatus;
+	private DeliverStatus status;
 	
 	private String feedback;
 	
@@ -50,81 +50,118 @@ public class Deliver implements Serializable{
 	public Deliver() {
 	}
 
-	public Deliver(Long id, String uri, Instant moment, DeliverStatus deliverStatus, String feedback,
-			Integer correctCount, Enrollment enrollment, Lesson lesson) {
+	
+
+	public Deliver(Long id, String uri, Instant moment, DeliverStatus status, String feedback, Integer correctCount,
+			Enrollment enrollment, Lesson lesson) {
+		super();
 		this.id = id;
 		this.uri = uri;
 		this.moment = moment;
-		this.deliverStatus = deliverStatus;
+		this.status = status;
 		this.feedback = feedback;
 		CorrectCount = correctCount;
 		this.enrollment = enrollment;
 		this.lesson = lesson;
 	}
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 
 	public String getUri() {
 		return uri;
 	}
 
+
+
 	public void setUri(String uri) {
 		this.uri = uri;
 	}
+
+
 
 	public Instant getMoment() {
 		return moment;
 	}
 
+
+
 	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
 
-	public DeliverStatus getDeliverStatus() {
-		return deliverStatus;
+
+
+	public DeliverStatus getStatus() {
+		return status;
 	}
 
-	public void setDeliverStatus(DeliverStatus deliverStatus) {
-		this.deliverStatus = deliverStatus;
+
+
+	public void setStatus(DeliverStatus status) {
+		this.status = status;
 	}
+
+
 
 	public String getFeedback() {
 		return feedback;
 	}
 
+
+
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
+
+
 
 	public Integer getCorrectCount() {
 		return CorrectCount;
 	}
 
+
+
 	public void setCorrectCount(Integer correctCount) {
 		CorrectCount = correctCount;
 	}
+
+
 
 	public Enrollment getEnrollment() {
 		return enrollment;
 	}
 
+
+
 	public void setEnrollment(Enrollment enrollment) {
 		this.enrollment = enrollment;
 	}
+
+
 
 	public Lesson getLesson() {
 		return lesson;
 	}
 
+
+
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
 	}
+
+
 
 	@Override
 	public int hashCode() {
