@@ -31,6 +31,7 @@ public class AuthService {
 	
 	public void validateSelfOrAdmin(Long userId) {
 		User user = authenticated();
+		//Verifica se o id do usuário é diferente e ele não é admin 
 		if(!user.getId().equals(userId) && !user.hasHole("ROLE_ADMIN") ) {
 			throw new ForbiddenException("Access denied");
 		}
