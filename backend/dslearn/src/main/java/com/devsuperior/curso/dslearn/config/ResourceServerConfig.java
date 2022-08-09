@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -18,10 +17,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	// Endpoints publicos
 	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
-	// Endpoints de operador e admin
-	private static final String[] OPERATION_OR_ADMIN = { "/products/**", "/categories/**" };
-	// Endpoints de admin
-	private static final String[] ADMIN = { "/users/**" };
+	
 	
 	@Autowired
 	private Environment env;
@@ -42,10 +38,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		}
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()// Acessar aos endpoints públicos não exigiram login
-		.antMatchers(HttpMethod.GET, OPERATION_OR_ADMIN).permitAll() // Libera somente metodo GET para todos
-		.antMatchers(OPERATION_OR_ADMIN).hasAnyRole("OPERATOR", "ADMIN") //Libera os outros métodos(POST,PUT) para perfis com role de adm e operator
-		.antMatchers(ADMIN).hasRole("ADMIN"). 
-		anyRequest().authenticated(); //Para acessar qualquer outra rota o usuário precisa estar logado
+		.anyRequest().authenticated(); //Para acessar qualquer outra rota o usuário precisa estar logado
 
 	}
 
