@@ -20,10 +20,15 @@ public class UserService  implements UserDetailsService{
 	
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private AuthService authService;
 	private static Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Transactional(readOnly = true)
 	public UserDTO findById(Long id) {
+		authService.validateSelfOrAdmin(id);
+		
 		User entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found"));
 		return new UserDTO(entity);

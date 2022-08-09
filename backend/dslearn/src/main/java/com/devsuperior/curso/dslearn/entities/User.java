@@ -139,7 +139,13 @@ public class User implements Serializable,UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-
+	
+	public boolean hasHole(String role) {
+		return roles.stream()
+			.filter(x -> x.getAuthority().equals(role))
+			.findFirst().isPresent();
+			
+	}
 	
 	
 	
